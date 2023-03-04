@@ -3,8 +3,8 @@
 
 #define PlatformClass PlatformSDL
 
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include "Platform.h"
 
 class PlatformSDL : public Platform {
@@ -91,6 +91,7 @@ private:
     SDL_AudioDeviceID audioDeviceID;
     SDL_Joystick *joystick;
     SDL_Window* window;
+    SDL_Renderer* renderer;
     SDL_Surface* windowSurface;
     SDL_Surface* bufferSurface;
     SDL_Surface* fadeSurface;

@@ -1,5 +1,5 @@
 #include "PT2.3A_replay_cia.h"
-#include "PlatformSDL.h"
+#include "PlatformVita.h"
 
 #ifdef PLATFORM_MODULE_BASED_AUDIO
 #define LARGEST_MODULE_SIZE 105654
@@ -47,39 +47,39 @@ static int8_t animTileMap[256] = {
 static char MAPNAME[] = "level-a";
 #ifdef PLATFORM_IMAGE_SUPPORT
 static const char* imageFilenames[] = {
-    "introscreen.png",
-    "gamescreen.png",
-    "gameover.png"
+    "app0:introscreen.png",
+    "app0:gamescreen.png",
+    "app0:gameover.png"
 };
 #endif
 #ifdef PLATFORM_MODULE_BASED_AUDIO
 static const char* moduleFilenames[] = {
-    "mod.soundfx",
-    "mod.metal heads",
-    "mod.win",
-    "mod.lose",
-    "mod.metallic bop amiga",
-    "mod.get psyched",
-    "mod.robot attack",
-    "mod.rushin in"
+    "app0:mod.soundfx",
+    "app0:mod.metal-heads",
+    "app0:mod.win",
+    "app0:mod.lose",
+    "app0:mod.metallic-bop-amiga",
+    "app0:mod.get-psyched",
+    "app0:mod.robot-attack",
+    "app0:mod.rushin-in"
 };
 static const char* sampleFilenames[] = {
-    "sounds_dsbarexp.raw",
-    "SOUND_MEDKIT.raw",
-    "SOUND_EMP.raw",
-    "SOUND_MAGNET2.raw",
-    "SOUND_SHOCK.raw",
-    "SOUND_MOVE.raw",
-    "SOUND_PLASMA_FASTER.raw",
-    "sounds_dspistol.raw",
-    "SOUND_FOUND_ITEM.raw",
-    "SOUND_ERROR.raw",
-    "SOUND_CYCLE_WEAPON.raw",
-    "SOUND_CYCLE_ITEM.raw",
-    "SOUND_DOOR_FASTER.raw",
-    "SOUND_BEEP2.raw",
-    "SOUND_BEEP.raw",
-    "SquareWave.raw"
+    "app0:sounds_dsbarexp.raw",
+    "app0:SOUND_MEDKIT.raw",
+    "app0:SOUND_EMP.raw",
+    "app0:SOUND_MAGNET2.raw",
+    "app0:SOUND_SHOCK.raw",
+    "app0:SOUND_MOVE.raw",
+    "app0:SOUND_PLASMA_FASTER.raw",
+    "app0:sounds_dspistol.raw",
+    "app0:SOUND_FOUND_ITEM.raw",
+    "app0:SOUND_ERROR.raw",
+    "app0:SOUND_CYCLE_WEAPON.raw",
+    "app0:SOUND_CYCLE_ITEM.raw",
+    "app0:SOUND_DOOR_FASTER.raw",
+    "app0:SOUND_BEEP2.raw",
+    "app0:SOUND_BEEP.raw",
+    "app0:SquareWave.raw"
 };
 #endif
 
@@ -224,7 +224,8 @@ PlatformSDL::PlatformSDL() :
 
     joystick = SDL_JoystickOpen(0);
 
-    window = SDL_CreateWindow("Attack of the PETSCII Robots", 0, 0, PLATFORM_SCREEN_WIDTH, PLATFORM_SCREEN_HEIGHT, 0);
+    window = SDL_CreateWindow("Attack of the PETSCII Robots", 0, 0, 960, 544, 0);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     windowSurface = SDL_GetWindowSurface(window);
     bufferSurface = SDL_CreateRGBSurface(0, PLATFORM_SCREEN_WIDTH, PLATFORM_SCREEN_HEIGHT, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
     fadeSurface = SDL_CreateRGBSurface(0, 1, 1, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
@@ -1260,15 +1261,20 @@ void PlatformSDL::renderFrame(bool)
 #endif
     }
 
+    SDL_RenderClear(renderer);
     SDL_Rect bufferRect = { 0, 0, loadedImage == ImageGame ? PLATFORM_SCREEN_WIDTH : 320, loadedImage == ImageGame ? PLATFORM_SCREEN_HEIGHT : 200 };
-    SDL_Rect windowRect = { 0, 0, PLATFORM_SCREEN_WIDTH, PLATFORM_SCREEN_HEIGHT };
-    SDL_BlitScaled(bufferSurface, &bufferRect, windowSurface, &windowRect);
+    SDL_Texture* bufferTexture = SDL_CreateTextureFromSurface(renderer, bufferSurface);
+    SDL_Rect windowRect = { 0, 0, 960, 544 };
+    SDL_RenderCopy(renderer, bufferTexture, &bufferRect, &windowRect);
+    SDL_DestroyTexture(bufferTexture);
     if (fadeIntensity != 15) {
         uint32_t intensity = (15 - fadeIntensity) << 24;
         uint32_t abgr = intensity | (intensity << 4) | fadeBaseColor;
         SDL_Rect fadeRect = { 0, 0, 1, 1 };
         SDL_FillRect(fadeSurface, &fadeRect, abgr);
-        SDL_BlitScaled(fadeSurface, &fadeRect, windowSurface, &windowRect);
+        SDL_Texture* fadeTexture = SDL_CreateTextureFromSurface(renderer, fadeSurface);
+        SDL_RenderCopy(renderer, fadeTexture, &fadeRect, &windowRect);
+        SDL_DestroyTexture(fadeTexture);
     }
-    SDL_UpdateWindowSurface(window);
+    SDL_RenderPresent(renderer);
 }

@@ -11,7 +11,7 @@
 #elif defined(_PSP)
 #include "PlatformPSP.h"
 #else
-#include "PlatformSDL.h"
+#include "PlatformVita.h"
 #endif
 #include "petrobots.h"
 
