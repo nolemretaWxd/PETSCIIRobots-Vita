@@ -11,3 +11,16 @@ Tested only with Ubuntu, but it should work on any OS that VitaSDK will run on.
 4. Build the project using CMake (eg. `cmake .` to generate Makefile, then `make` to build
 
 Resulting .vpk file should run on any [HENkaku](https://henkaku.xyz/) modded Vita, and on Vita3K emulator.
+
+## Controls
+- UP/DOWN/LEFT/RIGHT move
+- TRIANGLE/CROSS/SQUARE/CIRCLE fire
+- L search
+- R move
+- START use item
+- SELECT+L cycle item
+- SELECT+R cycle weapon
+- SELECT+LEFT live map
+- SELECT+DOWN live map robots
+- SELECT+CIRCLE pause
+- SELECT+CROSS toggle music
