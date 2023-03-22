@@ -13,4 +13,3 @@ Resulting .vpk file should run on any [HENkaku](https://henkaku.xyz/) modded Vit
 
 ## TODO
 - Fire button gets stuck when entering the game
-- Some tiles like the bomb are missing transparency
