@@ -1076,8 +1076,7 @@ void PlatformSDL::fadeScreen(uint16_t intensity, bool immediate)
             do {
                 fadeIntensity += fadeDelta;
 
-                SDL_Event event;
-                while (SDL_PollEvent(&event));
+                clearKeyBuffer();
 
                 this->renderFrame(true);
             } while (fadeIntensity != intensity);
