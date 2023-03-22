@@ -229,7 +229,7 @@ char INTRO_MESSAGE[] = "welcome to "
                        "-robots!\xff"
                        "by david murray 2021\xff"
                        PLATFORM_NAME
-                       " port by vesa halttunen";
+                       " port by vesa halttunen and nolemretaw";
 char MSG_CANTMOVE[] = "can't move that!";
 char MSG_BLOCKED[] = "blocked!";
 char MSG_SEARCHING[] = "searching";
@@ -2755,6 +2755,7 @@ bool EXEC_COMMAND()
         MUSIC_ON = 0;
 #endif
         platform->stopNote(); // turn off sound
+        platform->clearKeyBuffer();
         INIT_GAME();
         return true;
     } else if (MENUY == 2) { // DIFF LEVEL
