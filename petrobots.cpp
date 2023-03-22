@@ -2755,7 +2755,6 @@ bool EXEC_COMMAND()
         MUSIC_ON = 0;
 #endif
         platform->stopNote(); // turn off sound
-        platform->clearKeyBuffer();
         INIT_GAME();
         return true;
     } else if (MENUY == 2) { // DIFF LEVEL
