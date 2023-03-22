@@ -120,23 +120,18 @@ uint8_t unitX[48];
 uint8_t unitY[48];
 
 static uint16_t joystickButtons[] = {
-    Platform::JoystickRed, // 0
+    Platform::JoystickYellow, // 0
     Platform::JoystickBlue, // 1
-    Platform::JoystickGreen, // 2
-    Platform::JoystickYellow, // 3
-    Platform::JoystickPlay, // 4
-    0, // 5
-    Platform::JoystickExtra, // 6
-    0, // 7
-    0, // 8
-    Platform::JoystickReverse, // 9
-    Platform::JoystickForward, // 10
-    Platform::JoystickUp, // 11
-    Platform::JoystickDown, // 12
-    Platform::JoystickLeft, // 13
-    Platform::JoystickRight, // 14
-    0, // 15
-    0 // 16
+    Platform::JoystickRed, // 2
+    Platform::JoystickGreen, // 3
+    Platform::JoystickReverse, // 4
+    Platform::JoystickForward, // 5
+    Platform::JoystickDown, // 6
+    Platform::JoystickLeft, // 7
+    Platform::JoystickUp, // 8
+    Platform::JoystickRight, // 9
+    Platform::JoystickPlay, // 10
+    Platform::JoystickExtra // 11
 };
 
 PlatformSDL::PlatformSDL() :
