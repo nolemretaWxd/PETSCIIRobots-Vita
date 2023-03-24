@@ -385,6 +385,7 @@ uint8_t MINUTES = 0;
 uint8_t SECONDS = 0;
 uint8_t CYCLES = 0;
 uint8_t CLOCK_ACTIVE = 0;
+
 #ifdef INACTIVITY_TIMEOUT_GAME
 uint8_t INACTIVE_SECONDS = 0;
 #endif
@@ -560,12 +561,12 @@ void MAIN_GAME_LOOP()
                         FIRE_DOWN();
                         KEYTIMER = 20;
                     }
-                    if (B & Platform::JoystickExtra) {
+                    if (B == Platform::JoystickPlay && LIVE_MAP_ON == 0) {
                         TOGGLE_MUSIC();
                         CLEAR_KEY_BUFFER();
                     }
 #ifdef PLATFORM_LIVE_MAP_SUPPORT
-                    if (B == Platform::JoystickPlay) {
+                    if (B == Platform::JoystickPlay && LIVE_MAP_ON == 1) {
                         TOGGLE_LIVE_MAP_ROBOTS();
                         CLEAR_KEY_BUFFER();
                     }
