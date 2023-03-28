@@ -13,7 +13,7 @@ This work is licensed under the Creative Commons Attribution 4.0 International L
 The game should run on any [HENkaku](https://henkaku.xyz/) modded Vita and on Vita3K emulator.
 
 ## Controls
-- UP/DOWN/LEFT/RIGHT or left analog stick- move
+- UP/DOWN/LEFT/RIGHT or left analog stick - move
 - Right analog stick - fire
 - L - search
 - R - move
@@ -21,6 +21,6 @@ The game should run on any [HENkaku](https://henkaku.xyz/) modded Vita and on Vi
 - SQUARE - cycle item
 - CIRCLE - cycle weapon
 - TRIANGLE - live map
-- SELECT when live map is turned on - live map robots
-- SELECT when live map is turned off - toggle music
+- SELECT+TRIANGLE - toggle robots in live map
+- SELECT+START - toggle music
 - START - pause
