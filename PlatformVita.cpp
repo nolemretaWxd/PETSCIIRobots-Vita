@@ -1,7 +1,7 @@
 #include "PT2.3A_replay_cia.h"
 #include "PlatformVita.h"
 
-#define JOYSTICK_AXIS_THRESHOLD 25000
+#define JOYSTICK_AXIS_THRESHOLD 30000
 
 #ifdef PLATFORM_MODULE_BASED_AUDIO
 #define LARGEST_MODULE_SIZE 105654
